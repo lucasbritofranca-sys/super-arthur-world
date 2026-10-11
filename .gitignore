@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
+.env*
+!.env.example
+.vercel/
+.tmp/
+.local-tools/
+supabase/.temp/
