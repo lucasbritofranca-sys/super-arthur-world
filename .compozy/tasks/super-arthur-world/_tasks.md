@@ -59,7 +59,7 @@ The frontmatter graph is the sole authoritative dependency store. The table's De
 | 01 | [Browser Foundation, Shared Contracts and Input Adapters](task_01.md) | completed | high | - |
 | 02 | [Deterministic Terrain, Traversal and Collision Gate](task_02.md) | completed | critical | task_01 |
 | 03 | [Forms, Mounts, Objects, Combat and Boss Mechanics](task_03.md) | completed | critical | task_02 |
-| 04 | [Campaign Progression, Rewards and Scoped Reset Reducers](task_04.md) | pending | critical | task_03 |
+| 04 | [Campaign Progression, Rewards and Scoped Reset Reducers](task_04.md) | completed | critical | task_03 |
 | 05 | [Transactional Saves, Google Accounts and Dedicated Integrations](task_05.md) | pending | critical | task_04 |
 | 06 | [Original Assets and the Complete 120-Level Campaign](task_06.md) | pending | high | task_04 |
 | 07 | [Complete Browser Experience, Accessibility and Integration Remediation](task_07.md) | pending | critical | task_05, task_06 |

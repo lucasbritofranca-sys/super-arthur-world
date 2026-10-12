@@ -7,7 +7,7 @@ export function strikeEnemy(c: Context, enemy: EnemyActor, attack: Attack): 'def
   if (!enemy.alive) return 'immune';
   if (response === 'defeat') {
     enemy.alive = false; enemy.respawnTicks = enemy.family === 'regeneration' ? 180 : 0;
-    c.emit({ kind: 'reward', eventId: c.event(`reward:${enemy.id}`), tick: c.tick, entityId: enemy.id, reward: 'score', amount: 100 });
+    c.emit({ kind: 'reward', eventId: c.event(`reward:${enemy.id}`), tick: c.tick, entityId: enemy.id, reward: 'score', amount: 100, chain: ['stomp', 'spin', 'shell', 'invincibility'].includes(attack) });
   }
   if (attack === 'stomp' && response !== 'immune' || attack === 'spin' && response === 'bounce') c.player.velocity.y = -180;
   return response;

@@ -87,6 +87,10 @@ export class MechanicsWorld {
     this.state.temporaryCoins = this.state.temporaryCoins.filter(coin => !this.convertedCollected.has(coin.id));
     for (const e of [...this.area.entities].sort((a, b) => a.id.localeCompare(b.id))) {
       if (this.consumed.has(e.id) || !overlaps(c.player.body, entityRect(e))) continue;
+      if (e.kind === 'coin' || e.kind === 'life') {
+        this.consumed.add(e.id);
+        c.emit({ kind: 'reward', eventId: c.event(`reward:${e.id}`), tick: c.tick, entityId: e.id, reward: e.kind, amount: 1 });
+      }
       if (e.kind.startsWith('power:')) {
         const power = e.kind.slice(6);
         if (power === 'invincibility') c.run.effects.invincibility = Number(e.parameters['duration'] ?? 600);
@@ -174,5 +178,5 @@ export class MechanicsWorld {
   reset(): void { this.state.projectiles.length = 0; }
   memory(): AreaMechanicMemory { return structuredClone({ consumed: [...this.consumed], blocks: this.state.blocks, convertedCollected: [...this.convertedCollected] }); }
   powerVisible(id: string): boolean { return !this.consumed.has(id); }
-  visiblePickups(): EntityDefinition[] { return this.area.entities.filter(e => !this.consumed.has(e.id) && (e.kind.startsWith('power:') || e.kind === 'berry' || e.kind === 'wings')); }
+  visiblePickups(): EntityDefinition[] { return this.area.entities.filter(e => !this.consumed.has(e.id) && (e.kind.startsWith('power:') || ['berry', 'wings', 'coin', 'life'].includes(e.kind))); }
 }

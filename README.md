@@ -1,6 +1,6 @@
 # Super Arthur World
 
-A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code includes the foundation and deterministic terrain arena; task 03 adds forms, reserve, temporary powers, mounts, objects, blocks, enemy interactions and boss controllers. Real Phaser presentation uses the same pure simulation as tests. The complete campaign, save menus and cloud synchronization belong to later tasks.
+A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code includes the foundation, deterministic terrain arena, forms, reserve, temporary powers, mounts, objects, blocks, enemy interactions and boss controllers. Task 04 adds the pure campaign/reward/checkpoint/reset authority and six-slot commands. Real Phaser presentation uses the same pure simulation as tests. The authored 120-level campaign, complete menus and cloud synchronization belong to later tasks. The current interactive arena is a development harness.
 
 ## Tools and commands
 
@@ -22,6 +22,8 @@ Keyboard: arrows/WASD movement, Z/Space jump, X spin, Shift/J action, C reserve,
 `src/core` imports no Phaser/DOM/storage; `src/input` samples devices; `src/app` composes the one Phaser instance. Shared contracts are in `types.ts`, `events.ts`, `schema.ts`; changes are coordinated serially. `TerrainSimulation` is the single position authority; `CollisionSolver` uses at most 4px substeps and 64px/tick, with swept moving surfaces and high-foot tilted contacts. `LevelScene` only renders views and scrolls the camera. Host-created UUID attempt identities produce deterministic UUID event IDs; safe restart advances the local attempt ordinal, while replay preserves the supplied identity. No wall-clock or global random source enters core. Test prose `normalJump` aliases canonical Action `jump`.
 
 Cloud/auth/schema provisioning is task 05. `.env.example` contains only public Supabase configuration placeholders. Missing/invalid configuration keeps guest preparation available and indicates sync unavailable. No tokens or provider secrets belong in source or the public repository.
+
+Campaign integration rules and original bonus defaults are documented in [docs/qa/campaign-contract.md](docs/qa/campaign-contract.md). Core commands produce immutable save intents; the current tests do not claim real disk/cloud durability. Task 07 wires final map, HUD, story and save screens to these commands.
 
 ## Attribution
 

@@ -42,7 +42,10 @@ export interface Campaign {
   schemaVersion: 1; contentVersion: string; campaignId: string; difficulty: Difficulty;
   progress: Progress; lives: number; resume: Resume; run: RunState;
   rewardMarks: string[]; lastTransition: LastTransition; savedAt: string;
+  pendingBonus?: BonusRound | null; // Optional in v1; absent means no interrupted bonus game.
+  openingSeen?: boolean; // Optional in v1; absent means the short opening has not been shown.
 }
+export interface BonusRound { id: string; levelId: string; seed: number; tick: number; cells: (0 | 1 | 2 | null)[] }
 export interface ActorState {
   id: string; position: Vec2; velocity: Vec2; body: Rect; hurt: Rect; attack: Rect | null;
   mode: 'ground' | 'air' | 'swim' | 'climb' | 'fence' | 'flight' | 'float' | 'transition' | 'dying';

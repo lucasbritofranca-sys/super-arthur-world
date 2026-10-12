@@ -92,10 +92,11 @@ export function journey(id: string): unknown {
       else if (family === 'spin-break') { step(s); events.push(...step(s, ['spin', 'right'], ['spin'])); events.push(...ticks(s, 35, ['spin', 'right'])); }
       else { step(s); events.push(...step(s, ['jump'], ['jump'])); events.push(...ticks(s, 4, ['jump'])); }
       const block = s.view().mechanics!.blocks[0]!;
-      if (['reward', 'hidden', 'bonus'].includes(family)) check(events.length === 1 && events[0]!.kind === 'reward' && block.consumed, `single ${family} reward`);
-      if (family === 'bonus') check(events[0]!.kind === 'reward' && events[0]!.amount === 3, 'bonus amount');
+      const rewards = events.filter(e => e.kind === 'reward');
+      if (['reward', 'hidden', 'bonus'].includes(family)) check(rewards.length === 1 && block.consumed, `single ${family} reward`);
+      if (family === 'bonus') check(rewards[0]!.amount === 3, 'bonus amount');
       if (family === 'grab') check(s.view().run.carried?.id === 'block' && s.view().mechanics!.objects.filter(o => o.descriptor.id === 'block' && o.owner === 'arthur').length === 1, 'grab block becomes uniquely carried object');
-      if (family === 'bounce') check(s.view().player.velocity.y < 0, 'bounce velocity'); if (family === 'rotating') check(block.rotationTicks > 0, 'rotation timer'); if (['grab', 'spin-break'].includes(family)) check(block.consumed && !block.solid, `${family} removal`); if (family === 'message') check(events.length === 1 && events[0]!.kind === 'message', 'message outcome');
+      if (family === 'bounce') check(s.view().player.velocity.y < 0, 'bounce velocity'); if (family === 'rotating') check(block.rotationTicks > 0, 'rotation timer'); if (['grab', 'spin-break'].includes(family)) check(block.consumed && !block.solid, `${family} removal`); if (family === 'message') check(events.filter(e => e.kind === 'message').length === 1, 'message outcome');
       outcomes.push({ family, block, events });
     }
     return outcomes;

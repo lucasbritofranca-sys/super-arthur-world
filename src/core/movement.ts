@@ -85,7 +85,8 @@ export class TerrainSimulation implements Simulation {
   private rebuildTerrain(): void { const area = this.options.level.subareas.find(a => a.id === this.state.subareaId)!; this.solver = new CollisionSolver([...area.terrain, ...this.mechanics.terrain()]); }
   snapshot(checkpointId: string | null = null): RestartSnapshot { return { levelId: this.state.levelId, subareaId: this.state.subareaId, checkpointId, anchor: { ...this.state.player.position }, remainingTicks: this.state.remainingTicks, run: structuredClone(this.state.run), hazardSeed: this.options.seed ?? 17 }; }
   private exitEvent(exitId: string): DomainEvent {
-    return { kind: 'exit', eventId: this.eventId(`exit:${exitId}`), tick: this.state.tick, exitId, levelId: this.state.levelId, bonusStars: 0, medallions: [...this.pendingMedallions].sort() };
+    const entity = this.options.level.subareas.flatMap(a => a.entities).find(e => e.kind === 'exit' && e.parameters['exitId'] === exitId);
+    return { kind: 'exit', eventId: this.eventId(`exit:${exitId}`), tick: this.state.tick, exitId, levelId: this.state.levelId, bonusStars: Number(entity?.parameters['bonusStars'] ?? 0), medallions: [...this.pendingMedallions].sort(), remainingTicks: this.state.remainingTicks, run: structuredClone(this.state.run) };
   }
   private applyMove(dx: number, dy: number, snap: boolean, exclude: string | null = null): boolean {
     const p = this.state.player; const result = this.solver.move(p.body, dx, dy, this.platforms.surfaces, snap, exclude);
@@ -201,6 +202,7 @@ export class TerrainSimulation implements Simulation {
     const outcome = this.mechanics.finish(ctx, previous); this.syncPlayer();
     if (p.grounded) p.spinning = false;
     if (outcome.lethal) { this.state.run = beforeRun; return this.lethal('contact'); }
+    if (!wasGrounded && p.grounded && p.velocity.y === 0) events.push({ kind: 'chainReset', eventId: this.eventId('chainReset'), tick: this.state.tick });
     for (const entity of area.entities) if (entity.kind === 'medallion' && overlaps(p.body, region({ ...entity, kind: 'water' }))) this.pendingMedallions.add(entity.id);
     for (const exitId of outcome.bossExits) { events.push(this.exitEvent(exitId)); this.exited = true; }
     for (const entity of area.entities) {

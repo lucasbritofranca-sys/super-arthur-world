@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 title: Campaign Progression, Rewards and Scoped Reset Reducers
 type: frontend
 complexity: critical
@@ -36,13 +36,13 @@ Deliver the pure campaign transition rules that own progression, rewards, contin
 
 ## Subtasks
 
-- [ ] 4.1 Implement valid new/continue/difficulty campaign transitions.
-- [ ] 4.2 Implement deterministic reward counters, chains and unique achievement ledger.
-- [ ] 4.3 Implement checkpoint/exit snapshots and tentative-versus-committed collection.
-- [ ] 4.4 Implement ordinary death and three Game Over reset scopes.
-- [ ] 4.5 Implement derived map routes, sanctuary ownership and secret-world access.
-- [ ] 4.6 Implement story victory and complete-exploration computation.
-- [ ] 4.7 Produce view models and deterministic reducer fixtures for persistence/UI.
+- [x] 4.1 Implement valid new/continue/difficulty campaign transitions.
+- [x] 4.2 Implement deterministic reward counters, chains and unique achievement ledger.
+- [x] 4.3 Implement checkpoint/exit snapshots and tentative-versus-committed collection.
+- [x] 4.4 Implement ordinary death and three Game Over reset scopes.
+- [x] 4.5 Implement derived map routes, sanctuary ownership and secret-world access.
+- [x] 4.6 Implement story victory and complete-exploration computation.
+- [x] 4.7 Produce view models and deterministic reducer fixtures for persistence/UI.
 
 ## Implementation Details
 
@@ -101,30 +101,30 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 
 ### Unit
 
-- [ ] UT-003 — US-003.EC-1: Request lowerDifficulty(easy) through the app command while screen=level and campaign difficulty=hard.
-- [ ] UT-025 — US-018.EC-1: Reactivate a temporary switch on its conversion tick, then reload its checkpoint.
-- [ ] UT-026 — US-018.EC-2: Classic-reset main03 which owns yellow sanctuary while green belongs to main01.
-- [ ] UT-030 — US-022.EC-1: Add 500 score to score=9999998 and award a chain life when lives=99.
-- [ ] UT-032 — US-023.EC-1: Starting with medallion1 committed, collect medallion2 then die before checkpoint.
-- [ ] UT-033 — US-023.EC-2: Complete the five-medallion set, commit, then recollect a marked medallion in replay.
-- [ ] UT-034 — US-024.EC-2: Enter a declared repeatable replenishment room with bonusStars=99 twice.
-- [ ] UT-037 — US-026.EC-2: Die with lives=1 at an active checkpoint.
-- [ ] UT-038 — US-027.EC-2: Classic-reset secret01 while main01 and main02 are visited.
-- [ ] UT-039 — US-028.EC-1: Complete exit main01.level03.secret twice.
-- [ ] UT-040 — US-028.EC-2: Classic-reset the world owning a secret shortcut.
-- [ ] UT-041 — US-029.EC-1: Travel to secret02 before its required network exits are complete.
-- [ ] UT-042 — US-029.EC-2: Reset secret01 after visiting secret02.
-- [ ] UT-045 — US-031.EC-1: With 120 levels,149 exits,600 medallions, then separately 120/150/599, CompletionSystem reports below 100% in both fixtures.
-- [ ] UT-046 — US-031.EC-2: Classic-reset one completed world after 100%.
+- [x] UT-003 — US-003.EC-1: Request lowerDifficulty(easy) through the app command while screen=level and campaign difficulty=hard.
+- [x] UT-025 — US-018.EC-1: Reactivate a temporary switch on its conversion tick, then reload its checkpoint.
+- [x] UT-026 — US-018.EC-2: Classic-reset main03 which owns yellow sanctuary while green belongs to main01.
+- [x] UT-030 — US-022.EC-1: Add 500 score to score=9999998 and award a chain life when lives=99.
+- [x] UT-032 — US-023.EC-1: Starting with medallion1 committed, collect medallion2 then die before checkpoint.
+- [x] UT-033 — US-023.EC-2: Complete the five-medallion set, commit, then recollect a marked medallion in replay.
+- [x] UT-034 — US-024.EC-2: Enter a declared repeatable replenishment room with bonusStars=99 twice.
+- [x] UT-037 — US-026.EC-2: Die with lives=1 at an active checkpoint.
+- [x] UT-038 — US-027.EC-2: Classic-reset secret01 while main01 and main02 are visited.
+- [x] UT-039 — US-028.EC-1: Complete exit main01.level03.secret twice.
+- [x] UT-040 — US-028.EC-2: Classic-reset the world owning a secret shortcut.
+- [x] UT-041 — US-029.EC-1: Travel to secret02 before its required network exits are complete.
+- [x] UT-042 — US-029.EC-2: Reset secret01 after visiting secret02.
+- [x] UT-045 — US-031.EC-1: With 120 levels,149 exits,600 medallions, then separately 120/150/599, CompletionSystem reports below 100% in both fixtures.
+- [x] UT-046 — US-031.EC-2: Classic-reset one completed world after 100%.
 
 ### Integration
 
-- [ ] IT-030 — US-023: Collect medallion1, commit at checkpoint, die after collecting medallion2 and retry.
-- [ ] IT-031 — US-024: With bonusStars=99, finish an exit granting 1 star.
-- [ ] IT-033 — US-026: With lives=3 and a committed checkpoint, fall into a pit.
-- [ ] IT-035 — US-027: Parameterize zero-life Easy/Classic/Hard campaigns with progress in two worlds and another occupied slot.
-- [ ] IT-037 — US-028: Complete normal and secret exits of one accessible level.
-- [ ] IT-038 — US-029: Earn the qualifying main-world secret exit, enter secret01, complete its ten required network routes and select secret02.
+- [x] IT-030 — US-023: Collect medallion1, commit at checkpoint, die after collecting medallion2 and retry.
+- [x] IT-031 — US-024: With bonusStars=99, finish an exit granting 1 star.
+- [x] IT-033 — US-026: With lives=3 and a committed checkpoint, fall into a pit.
+- [x] IT-035 — US-027: Parameterize zero-life Easy/Classic/Hard campaigns with progress in two worlds and another occupied slot.
+- [x] IT-037 — US-028: Complete normal and secret exits of one accessible level.
+- [x] IT-038 — US-029: Earn the qualifying main-world secret exit, enter secret01, complete its ten required network routes and select secret02.
 
 Validation commands: use the actual locked `pnpm` scripts from the TechSpec — `typecheck`, `lint`, `test`, `test:integration`, `test:e2e`, `validate:content`, `build` and `qa:report` as applicable to the slice. Execute scoped implemented gates for intermediate handoff; full candidate gates and independent browser journeys are mandatory before publication. Record exact commands and nonzero failure results. Browser suites use native Playwright, with supported browser control tools for actual interactive journeys; no shell-only substitute for game/UI verification.
 
@@ -134,3 +134,7 @@ Validation commands: use the actual locked `pnpm` scripts from the TechSpec — 
 - Every reset touches exactly its declared scope and active slot.
 - Committed rewards and continuation never restore spent lives or resurrect erased progress.
 - Requirements, acceptance/edge cases and actual deliverables agree with the canonical specs; unresolved relevant failures block a completion claim.
+
+## Execution record (2026-10-12)
+
+Implemented in `src/core/campaign/{model,catalog,reducer,rewards,resets,progression,bonus}.ts`, `src/app/{campaign-commands,view-models}.ts` and coordinated shared types/events/schema/simulation pickup/exit/chain facts. Tests are `tests/unit/campaign.test.ts`, `tests/integration/campaign.spec.ts` and actual-core campaign fixtures. All 21 assigned cases are implemented; final repository gates passed 87 units and 31 Chromium tests with one worker, strict types, boundary lint and production build. Details, source hashes, intermediate failures, screenshots and independent PASS are under [evidence/task_04/verification.md](evidence/task_04/verification.md). Review round 002's repaired issue001 is VALID and awaits root's native formal finalizer. No author stage/commit/push; root owns those operations. Real persistence, complete UI/content and final QA remain their later task boundaries.

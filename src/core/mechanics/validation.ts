@@ -28,6 +28,7 @@ export function validateMechanics(level: LevelDefinition): ValidationIssue[] {
     if (e.kind === 'dispenser' && (typeof p['objectId'] !== 'string' || !p['objectId'] || !['shell', 'key', 'spring', 'block', 'timed'].includes(String(p['objectKind'] ?? 'key')))) reject('objectId', 'invalid_dispenser');
     if (e.kind === 'wings' && !level.subareas.some(x => x.id === p['destination'])) reject('destination', 'dangling_destination');
     if (e.kind === 'sanctuary' && !['green', 'red', 'blue', 'yellow'].includes(String(p['color']))) reject('color', 'unknown_color');
+    if (e.kind === 'exit' && p['bonusStars'] !== undefined && (!Number.isSafeInteger(p['bonusStars']) || Number(p['bonusStars']) < 0 || Number(p['bonusStars']) > 99)) reject('bonusStars', 'range');
     if (p['switchId'] && !area.entities.some(x => x.id === p['switchId'] && x.kind === 'switch')) reject('switchId', 'dangling_destination');
   }
   return issues;

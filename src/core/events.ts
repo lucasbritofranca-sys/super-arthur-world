@@ -1,12 +1,13 @@
-import type { RestartSnapshot } from './types';
+import type { RestartSnapshot, RunState } from './types';
 interface EventBase { eventId: string; tick: number }
 export interface CheckpointEvent extends EventBase { kind: 'checkpoint'; snapshot: RestartSnapshot; medallions: string[] }
-export interface ExitEvent extends EventBase { kind: 'exit'; exitId: string; levelId: string; bonusStars: number; medallions: string[] }
+export interface ExitEvent extends EventBase { kind: 'exit'; exitId: string; levelId: string; bonusStars: number; medallions: string[]; remainingTicks?: number; run?: RunState }
 export interface DeathEvent extends EventBase { kind: 'death'; cause: 'pit' | 'contact' | 'crush' | 'lava' | 'timeout'; levelId: string; worldId: string }
 export type DomainEvent = CheckpointEvent | ExitEvent | DeathEvent |
-  (EventBase & { kind: 'reward'; entityId: string; reward: 'coin' | 'score' | 'life'; amount: number }) |
+  (EventBase & { kind: 'reward'; entityId: string; reward: 'coin' | 'score' | 'life'; amount: number; chain?: boolean }) |
   (EventBase & { kind: 'bossVictory'; bossId: string }) |
   (EventBase & { kind: 'sanctuary'; sanctuaryId: string; color: 'green' | 'red' | 'blue' | 'yellow' }) |
   (EventBase & { kind: 'message'; entityId: string; text: string }) |
   (EventBase & { kind: 'mountBonus'; entityId: string; destination: string }) |
-  (EventBase & { kind: 'transition'; subareaId: string });
+  (EventBase & { kind: 'transition'; subareaId: string }) |
+  (EventBase & { kind: 'chainReset' });

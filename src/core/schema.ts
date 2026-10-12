@@ -46,6 +46,8 @@ const campaign = object({
   progress: object({ completedLevels: array(text, 120), exits: array(text, 150), medallions: record(integer(0, 31), 120), sanctuaries: array(text, 4), visitedWorlds: array(text, 12), storyComplete: boolean, cosmeticUnlocked: boolean }),
   lives: integer(0, 99), resume, run, rewardMarks: array(text, 4096),
   lastTransition: object({ eventId: uuid, kind: enumeration(['newCampaign', 'checkpoint', 'exit', 'death', 'gameOver', 'difficulty']), resetScope: enumeration(['level', 'world', 'campaign', null]), resetId: nullable(text) }), savedAt: timestamp,
+  pendingBonus: optional(nullable(object({ id: text, levelId: text, seed: integer(0, 4294967295), tick: integer(0, 216000), cells: array(enumeration([0, 1, 2, null]), 9) }))),
+  openingSeen: optional(boolean),
 });
 const parameter: Check = (v, p, i) => { if (typeof v === 'string') text(v, p, i); else if (typeof v === 'number') finite(v, p, i); else boolean(v, p, i); };
 const level = object({
@@ -72,6 +74,12 @@ export function validateRestart(value: unknown): ValidationResult<RestartSnapsho
   const issues: ValidationIssue[] = []; checkRunOwnership(result.value.run, '$.run', issues);
   return issues.length ? { ok: false, issues } : result;
 }
+export function validateRun(value: unknown): ValidationResult<Campaign['run']> {
+  const result = validate<Campaign['run']>(value, run);
+  if (!result.ok) return result;
+  const issues: ValidationIssue[] = []; checkRunOwnership(result.value, '$.run', issues);
+  return issues.length ? { ok: false, issues } : result;
+}
 export function validateCampaign(value: unknown, known?: { levels: ReadonlySet<string>; exits: ReadonlySet<string>; worlds: ReadonlySet<string> }): ValidationResult<Campaign> {
   let bytes: number;
   try { bytes = new TextEncoder().encode(JSON.stringify(value)).byteLength; }
@@ -81,6 +89,11 @@ export function validateCampaign(value: unknown, known?: { levels: ReadonlySet<s
   const result = validate<Campaign>(value, campaign);
   if (!result.ok) return result;
   const issues: ValidationIssue[] = []; const data = result.value;
+  if (data.pendingBonus) {
+    const cells = data.pendingBonus.cells.filter((_, index) => index !== 4);
+    const empty = cells.indexOf(null);
+    if (data.pendingBonus.cells.length !== 9 || data.pendingBonus.cells[4] === null || cells.every(c => c !== null) || empty >= 0 && cells.slice(empty).some(c => c !== null) || data.resume.kind !== 'map' || data.resume.levelId !== data.pendingBonus.levelId) fail('$.pendingBonus', 'invalid_bonus', issues);
+  }
   checkRunOwnership(data.run, '$.run', issues);
   if (data.resume.kind !== 'map') checkRunOwnership(data.resume.snapshot.run, '$.resume.snapshot.run', issues);
   for (const [path, ids] of Object.entries({ completedLevels: data.progress.completedLevels, exits: data.progress.exits, sanctuaries: data.progress.sanctuaries, visitedWorlds: data.progress.visitedWorlds, rewardMarks: data.rewardMarks })) {
@@ -95,6 +108,7 @@ export function validateCampaign(value: unknown, known?: { levels: ReadonlySet<s
     for (const id of data.progress.visitedWorlds) if (!known.worlds.has(id)) fail('$.progress.visitedWorlds', 'unknown_world', issues);
     const resumeLevel = data.resume.kind === 'map' ? data.resume.levelId : data.resume.snapshot.levelId;
     if (!known.levels.has(resumeLevel)) fail('$.resume', 'unknown_level', issues);
+    if (data.pendingBonus && !known.levels.has(data.pendingBonus.levelId)) fail('$.pendingBonus.levelId', 'unknown_level', issues);
   }
   return issues.length ? { ok: false, issues } : result;
 }

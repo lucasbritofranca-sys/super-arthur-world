@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-10-12T17:05:07.138Z",
+  "probe": "independent original exit failure reproduction after repair",
+  "cases": [
+    {
+      "kind": "power:large",
+      "simulationForm": "large",
+      "reducerForm": "large",
+      "savedForm": "large",
+      "reopenedForm": "large",
+      "coins": 0,
+      "lives": 6,
+      "exitHasRun": "large"
+    },
+    {
+      "kind": "power:gliding",
+      "simulationForm": "gliding",
+      "reducerForm": "gliding",
+      "savedForm": "gliding",
+      "reopenedForm": "gliding",
+      "coins": 0,
+      "lives": 6,
+      "exitHasRun": "gliding"
+    }
+  ],
+  "result": "PASS"
+}
