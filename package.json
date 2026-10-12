@@ -1,0 +1,27 @@
+{
+  "name": "super-arthur-world",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": { "node": "24.19.0" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:qa": "vite --mode qa --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "build:qa": "tsc --noEmit && vite build --mode qa",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "lint": "node scripts/lint.mjs",
+    "test": "vitest run",
+    "test:integration": "playwright test",
+    "test:boot": "playwright test tests/integration/boot.spec.ts"
+  },
+  "dependencies": { "phaser": "4.2.1" },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
+  }
+}

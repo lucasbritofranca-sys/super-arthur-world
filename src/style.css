@@ -1,0 +1,16 @@
+:root { font-family: system-ui, sans-serif; color: #ece4d4; background: #18251f; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 840px; margin: auto; padding: 24px; }
+h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); margin: 10px 0; }
+p { line-height: 1.5; }
+.eyebrow { color: #baae94; font-size: .85rem; }
+.buttons, .touch { display: flex; flex-wrap: wrap; gap: 12px; }
+button { font: inherit; min-height: 48px; min-width: 48px; padding: 10px 18px; border: 1px solid #aca084; border-radius: 6px; background: #394d40; color: #fff4de; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible { outline: 3px solid #e0c16e; outline-offset: 3px; }
+.stage { padding: 16px 0; }
+#canvas canvas { display: block; width: 100% !important; height: auto !important; image-rendering: pixelated; }
+.touch { touch-action: none; user-select: none; }
+.guidance { color: #c0b7a4; font-size: .9rem; }
+@media (max-width: 480px) { main { padding: 16px; } button { padding: 10px 12px; } }

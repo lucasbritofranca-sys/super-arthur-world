@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 title: Browser Foundation, Shared Contracts and Input Adapters
 type: frontend
 complexity: high
@@ -35,12 +35,12 @@ Deliver the single-app foundation and explicit contracts that the gameplay, cont
 
 ## Subtasks
 
-- [ ] 1.1 Establish reproducible application bootstrap and validation commands.
-- [ ] 1.2 Declare and validate the shared contracts used by every later slice.
-- [ ] 1.3 Provide semantic input frames with keyboard, gamepad and touch adapters.
-- [ ] 1.4 Provide safe pause/resume, device release and intentional user-gesture entry.
-- [ ] 1.5 Provide deterministic fixtures and a QA build bridge using actual app state.
-- [ ] 1.6 Record framework compatibility, setup and original-code attribution.
+- [x] 1.1 Establish reproducible application bootstrap and validation commands.
+- [x] 1.2 Declare and validate the shared contracts used by every later slice.
+- [x] 1.3 Provide semantic input frames with keyboard, gamepad and touch adapters.
+- [x] 1.4 Provide safe pause/resume, device release and intentional user-gesture entry.
+- [x] 1.5 Provide deterministic fixtures and a QA build bridge using actual app state.
+- [x] 1.6 Record framework compatibility, setup and original-code attribution.
 
 ## Implementation Details
 
@@ -98,16 +98,16 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 
 ### Unit
 
-- [ ] UT-004 — US-004.EC-1: InputRouter receives remap(normalJump,Escape), already bound to pause.
-- [ ] UT-005 — US-005.EC-2: Two controllers and keyboard all produce jump on the same tick.
-- [ ] UT-055 — App/config: Parse two valid VITE_SUPABASE public values versus absent/malformed values.
-- [ ] UT-065 — Gamepad deadzone: InputRouter receives stick x=0.19 then x=0.21 with deadzone=0.2.
+- [x] UT-004 — US-004.EC-1: InputRouter receives remap(normalJump,Escape), already bound to pause.
+- [x] UT-005 — US-005.EC-2: Two controllers and keyboard all produce jump on the same tick.
+- [x] UT-055 — App/config: Parse two valid VITE_SUPABASE public values versus absent/malformed values.
+- [x] UT-065 — Gamepad deadzone: InputRouter receives stick x=0.19 then x=0.21 with deadzone=0.2.
 
 ### Integration
 
-- [ ] IT-004 — US-004.EC-2: Hold Right through the keyboard adapter, dispatch blur, focus the page and intentionally resume without a new keydown.
-- [ ] IT-006 — US-005.EC-1: Disconnect the active gamepad during a jump.
-- [ ] IT-007 — US-006.EC-1: Hold touch Right then dispatch pointercancel and orientationchange.
+- [x] IT-004 — US-004.EC-2: Hold Right through the keyboard adapter, dispatch blur, focus the page and intentionally resume without a new keydown.
+- [x] IT-006 — US-005.EC-1: Disconnect the active gamepad during a jump.
+- [x] IT-007 — US-006.EC-1: Hold touch Right then dispatch pointercancel and orientationchange.
 
 Validation commands: use the actual locked `pnpm` scripts from the TechSpec — `typecheck`, `lint`, `test`, `test:integration`, `test:e2e`, `validate:content`, `build` and `qa:report` as applicable to the slice. Execute scoped implemented gates for intermediate handoff; full candidate gates and independent browser journeys are mandatory before publication. Record exact commands and nonzero failure results. Browser suites use native Playwright, with supported browser control tools for actual interactive journeys; no shell-only substitute for game/UI verification.
 
@@ -117,3 +117,7 @@ Validation commands: use the actual locked `pnpm` scripts from the TechSpec — 
 - The app boots with one Phaser instance and real input/pause adapters.
 - No competing actor-position authority or production debug-unlock bridge is introduced.
 - Requirements, acceptance/edge cases and actual deliverables agree with the canonical specs; unresolved relevant failures block a completion claim.
+
+## Execution evidence
+
+Affected gates passed; final-game verification is deferred to tasks 08/09. See [task-01 verification](evidence/task_01/verification.md) for exact commands, results, source hashes, screenshots, warnings and handoff limits. Root confirmed the supported-browser Start/Pause/Resume journey on the actual foundation. Independent review precedes task 02; no commit was created by this agent.
