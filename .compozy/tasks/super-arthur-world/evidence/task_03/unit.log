@@ -1,0 +1,12 @@
+$ vitest run
+
+ RUN  v5.0.3 C:/Users/Lucas/Documents/projeto-spec
+
+
+ Test Files  8 passed (8)
+      Tests  65 passed (65)
+   Start at  10:17:55
+   Duration  2.38s (import 37%, transform 30%, tests 29%, worker 4%)
+
+    Isolate  8 workers spawned · ~353ms startup each (spawn + environment, per file)
+             at least ~589ms faster with isolate: false — reuses workers across files instead of one per file

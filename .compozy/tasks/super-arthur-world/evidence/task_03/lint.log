@@ -1,0 +1,2 @@
+$ node scripts/lint.mjs
+PASS: 51 TypeScript files; no any/debugger/suppression; pure-core boundaries valid

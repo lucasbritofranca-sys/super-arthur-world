@@ -1,0 +1,38 @@
+$ playwright test "--workers=1"
+[WebServer] (node:280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] $ vite --mode qa --host 127.0.0.1 --port 4173 --strictPort
+[WebServer] (node:2384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 25 tests using 1 worker
+
+(node:6644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\integration\boot.spec.ts:2:1 › actual Phaser browser foundation boots once and uses explicit entry (3.1s)
+  ok  2 [chromium] › tests\integration\boot.spec.ts:16:1 › mobile foundation keeps readable controls inside the viewport (2.6s)
+  ok  3 [chromium] › tests\integration\input.spec.ts:3:1 › IT-004 blur clears held keyboard input and focus cannot resume it (2.6s)
+  ok  4 [chromium] › tests\integration\input.spec.ts:12:1 › IT-006 active gamepad disconnect pauses and empties held actions (2.4s)
+  ok  5 [chromium] › tests\integration\input.spec.ts:20:1 › IT-007 touch cancellation and orientation clear Right and retain pause (2.4s)
+  ok  6 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-009 actual browser mechanics contract (2.3s)
+  ok  7 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-010 actual browser mechanics contract (2.6s)
+  ok  8 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-012 actual browser mechanics contract (3.0s)
+  ok  9 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-014 actual browser mechanics contract (3.0s)
+  ok 10 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-015 actual browser mechanics contract (2.6s)
+  ok 11 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-016 actual browser mechanics contract (2.7s)
+  ok 12 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-017 actual browser mechanics contract (2.9s)
+  ok 13 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-018 actual browser mechanics contract (2.9s)
+  ok 14 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-019 actual browser mechanics contract (2.5s)
+  ok 15 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-020 actual browser mechanics contract (2.6s)
+  ok 16 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-021 actual browser mechanics contract (2.4s)
+  ok 17 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-025 actual browser mechanics contract (2.5s)
+  ok 18 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-026 actual browser mechanics contract (2.4s)
+  ok 19 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-027 actual browser mechanics contract (3.4s)
+  ok 20 [chromium] › tests\integration\mechanics.spec.ts:4:25 › IT-028 actual browser mechanics contract (2.5s)
+  ok 21 [chromium] › tests\integration\mechanics.spec.ts:11:1 › live mechanics arena collects powers with keyboard and touch at desktop and mobile sizes (7.5s)
+  ok 22 [chromium] › tests\integration\terrain.spec.ts:5:1 › IT-008 actual browser simulation has mode-independent run and jump physics (2.6s)
+  ok 23 [chromium] › tests\integration\terrain.spec.ts:17:1 › IT-013 upward paired pipe preserves a permitted key and changes real Phaser camera (2.6s)
+  ok 24 [chromium] › tests\integration\terrain.spec.ts:25:1 › IT-023 five dynamic surface types carry real actor throughout complete cycles (5.0s)
+  ok 25 [chromium] › tests\integration\terrain.spec.ts:36:1 › actual keyboard arena traversal, jump and camera remain visible on desktop and mobile (7.6s)
+
+  25 passed (1.4m)

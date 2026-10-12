@@ -34,7 +34,8 @@ const rect = object({ x: finite, y: finite, width: positive, height: positive })
 const carried = object({ id: text, kind: enumeration(['shell', 'key', 'spring', 'block', 'timed']), variant: text });
 const mount = object({ id: text, color: enumeration(['green', 'red', 'blue', 'yellow']), state: enumeration(['baby', 'following', 'ridden', 'fleeing', 'swallowing']), berries: integer(0, 99), swallowed: nullable(carried) });
 const effects = object({ invincibility: integer(0, 216000), float: integer(0, 216000), mountShell: integer(0, 216000) });
-const run = object({ coins: integer(0, 99), bonusStars: integer(0, 99), score: integer(0, 9999999), form, reserve: nullable(power), carried: nullable(carried), mount: nullable(mount), effects });
+const optional = (check: Check): Check => (v, p, i) => { if (v !== undefined) check(v, p, i); };
+const run = object({ coins: integer(0, 99), bonusStars: integer(0, 99), score: integer(0, 9999999), form, reserve: nullable(power), carried: nullable(carried), mount: nullable(mount), effects, temporarySwitches: optional(array(object({ id: text, remainingTicks: integer(1, 216000) }), 64)) });
 const restart = object({ levelId: text, subareaId: text, checkpointId: nullable(text), anchor: vec, remainingTicks: integer(0, 216000), run, hazardSeed: integer(0, 4294967295) });
 const resume: Check = (v, p, i) => {
   if (typeof v === 'object' && v !== null && 'kind' in v && v.kind === 'map') object({ kind: enumeration(['map']), worldId: text, levelId: text })(v, p, i);
@@ -61,6 +62,7 @@ function validate<T>(value: unknown, check: Check): ValidationResult<T> {
   return issues.length ? { ok: false, issues } : { ok: true, value: value as T };
 }
 function checkRunOwnership(data: Campaign['run'], path: string, issues: ValidationIssue[]): void {
+  if (new Set(data.temporarySwitches?.map(s => s.id)).size !== (data.temporarySwitches?.length ?? 0)) fail(`${path}.temporarySwitches`, 'duplicate_id', issues);
   if (data.carried && data.mount?.swallowed?.id === data.carried.id) fail(path, 'duplicate_ownership', issues);
   if (data.effects.mountShell > 0 && !data.mount?.swallowed) fail(`${path}.effects.mountShell`, 'missing_shell', issues);
 }

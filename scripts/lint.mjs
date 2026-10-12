@@ -17,7 +17,10 @@ for (const file of files) {
   const core = file.replaceAll('\\', '/').startsWith('src/core/');
   function visit(node) {
     if (node.kind === ts.SyntaxKind.AnyKeyword || ts.isDebuggerStatement(node)) problems.push(`${file}: forbidden any/debugger`);
-    if (core && ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier) && !node.moduleSpecifier.text.startsWith('./')) problems.push(`${file}: core boundary import ${node.moduleSpecifier.text}`);
+    if (core && ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
+      const target = path.resolve(path.dirname(file), node.moduleSpecifier.text);
+      if (!node.moduleSpecifier.text.startsWith('.') || !target.startsWith(path.resolve('src/core') + path.sep)) problems.push(`${file}: core boundary import ${node.moduleSpecifier.text}`);
+    }
     if (core && ts.isIdentifier(node) && ['window', 'document', 'navigator', 'Phaser', 'indexedDB'].includes(node.text)) problems.push(`${file}: browser/framework identifier ${node.text} in core`);
     node.forEachChild(visit);
   }

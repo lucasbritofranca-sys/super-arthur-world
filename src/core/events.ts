@@ -6,4 +6,7 @@ export interface DeathEvent extends EventBase { kind: 'death'; cause: 'pit' | 'c
 export type DomainEvent = CheckpointEvent | ExitEvent | DeathEvent |
   (EventBase & { kind: 'reward'; entityId: string; reward: 'coin' | 'score' | 'life'; amount: number }) |
   (EventBase & { kind: 'bossVictory'; bossId: string }) |
+  (EventBase & { kind: 'sanctuary'; sanctuaryId: string; color: 'green' | 'red' | 'blue' | 'yellow' }) |
+  (EventBase & { kind: 'message'; entityId: string; text: string }) |
+  (EventBase & { kind: 'mountBonus'; entityId: string; destination: string }) |
   (EventBase & { kind: 'transition'; subareaId: string });

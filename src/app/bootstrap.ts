@@ -9,10 +9,11 @@ import { PauseGuard } from './pause';
 import { parsePublicConfig } from './config';
 import { TerrainSimulation, type SimulationOptions, type TerrainState } from '../core/movement';
 import { terrainArena } from '../content/terrain-arena';
+import { mechanicsArena } from '../content/mechanics-arena';
 import { LevelScene } from '../game/scenes/LevelScene';
 
 export interface BootState { tick: number; paused: boolean; reason: string; held: string[]; pressed: string[]; device: string; phaserInstances: number }
-export interface QaBridge { state(): BootState; gamepads(samples: PadSample[]): void; step(delta: number): void; simulation(): Readonly<TerrainState>; camera(): { x: number; y: number }; load(options: SimulationOptions): void; trace(frames: { held: Action[]; pressed: Action[]; released: Action[] }[]): void }
+export interface QaBridge { state(): BootState; gamepads(samples: PadSample[]): void; step(delta: number): void; simulation(): Readonly<TerrainState>; camera(): { x: number; y: number }; load(options: SimulationOptions): void; snapshot(): import('../core/types').RestartSnapshot; restart(snapshot: import('../core/types').RestartSnapshot): void; trace(frames: { held: Action[]; pressed: Action[]; released: Action[] }[]): readonly import('../core/events').DomainEvent[] }
 declare global { interface Window { __SAW_QA__?: QaBridge } }
 let instance: Phaser.Game | null = null;
 export function bootstrap(root: HTMLElement): () => void {
@@ -45,18 +46,26 @@ export function bootstrap(root: HTMLElement): () => void {
     pause.disabled = !started || guard.paused; resume.disabled = !started || !guard.paused;
     root.querySelector('#status')!.textContent = !started ? 'Aguardando início' : guard.paused ? `Pausado (${guard.reason})` : 'Controles ativos';
     root.querySelector('#input-readout')!.textContent = lastFrame.held.size ? `Ações: ${[...lastFrame.held].join(', ')}` : 'Nenhuma ação';
+    const run = simulation.view().run;
+    const mechanicsReadout = root.querySelector('#mechanics-status');
+    if (mechanicsReadout) mechanicsReadout.textContent = `Forma: ${run.form} · Reserva: ${run.reserve ?? 'vazia'} · Invencível: ${Math.ceil(run.effects.invincibility / 60)}s · Flutuar: ${Math.ceil(run.effects.float / 60)}s · Montaria: ${run.mount?.color ?? 'nenhuma'}`;
   };
   const scene = new LevelScene(() => simulation, () => level, update, () => lastFrame);
   instance = new Phaser.Game({ type: Phaser.AUTO, width: 384, height: 216, parent: root.querySelector<HTMLElement>('#canvas')!, backgroundColor: '#273b31', pixelArt: true, antialias: false, scene: [scene], audio: { noAudio: true }, banner: false });
   const restart = document.createElement('button'); restart.textContent = 'Recomeçar arena';
   restart.onclick = () => { simulation = new TerrainSimulation({ level, attemptId: crypto.randomUUID() }); manualSimulation = false; clock.reset(); router.clear(); };
   root.querySelector('.buttons')!.append(restart);
+  const arena = document.createElement('button'); arena.textContent = 'Testar poderes e objetos';
+  arena.onclick = () => { level = mechanicsArena; simulation = new TerrainSimulation({ level, attemptId: crypto.randomUUID() }); manualSimulation = false; clock.reset(); router.clear(); };
+  root.querySelector('.buttons')!.append(arena);
+  const mechanicsStatus = document.createElement('p'); mechanicsStatus.id = 'mechanics-status'; root.querySelector('.stage')!.append(mechanicsStatus);
   if (__QA__) window.__SAW_QA__ = {
     state, gamepads: samples => { hardwareOverride = samples; gamepad.poll(samples); }, step: update,
     simulation: () => simulation.view(),
     camera: () => ({ x: scene.cameras.main.scrollX, y: scene.cameras.main.scrollY }),
     load: options => { level = options.level; simulation = new TerrainSimulation(options); manualSimulation = true; clock.reset(); },
-    trace: frames => { for (const f of frames) simulation.step({ held: new Set(f.held), pressed: new Set(f.pressed), released: new Set(f.released) }); },
+    snapshot: () => simulation.snapshot(), restart: at => simulation.restart(at),
+    trace: frames => frames.flatMap(f => [...simulation.step({ held: new Set(f.held), pressed: new Set(f.pressed), released: new Set(f.released) })]),
   };
   return () => { cleanups.forEach(f => f()); window.removeEventListener('gamepaddisconnected', disconnected); if (__QA__) delete window.__SAW_QA__; instance?.destroy(true); instance = null; root.replaceChildren(); };
 }

@@ -4,7 +4,7 @@ export type PlatformKind = 'moving' | 'falling' | 'guided' | 'rotating' | 'balan
 export interface PlatformDefinition extends Rect {
   id: string; kind: PlatformKind; period: number; path: Vec2[]; radius: number; tilt: number;
 }
-export interface DynamicSurface extends Rect { id: string; previous: Rect; tilt: number; previousTilt: number }
+export interface DynamicSurface extends Rect { id: string; kind?: PlatformKind; previous: Rect; tilt: number; previousTilt: number }
 export function surfaceY(surface: DynamicSurface, x: number, previous = false): number {
   const shape = previous ? surface.previous : surface;
   return shape.y + (x - (shape.x + shape.width / 2)) * (previous ? surface.previousTilt : surface.tilt);

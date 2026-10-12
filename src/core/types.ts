@@ -12,6 +12,7 @@ export interface ActionFrame {
   held: ReadonlySet<Action>; pressed: ReadonlySet<Action>; released: ReadonlySet<Action>;
 }
 export interface Effects { invincibility: number; float: number; mountShell: number }
+export interface TemporarySwitch { id: string; remainingTicks: number }
 export interface CarriedDescriptor { id: string; kind: 'shell' | 'key' | 'spring' | 'block' | 'timed'; variant: string }
 export interface MountDescriptor {
   id: string; color: 'green' | 'red' | 'blue' | 'yellow';
@@ -21,6 +22,7 @@ export interface MountDescriptor {
 export interface RunState {
   coins: number; bonusStars: number; score: number; form: Form; reserve: Exclude<Form, 'small'> | null;
   carried: CarriedDescriptor | null; mount: MountDescriptor | null; effects: Effects;
+  temporarySwitches?: TemporarySwitch[]; // Missing in older v1 snapshots means no active switches.
 }
 export interface RestartSnapshot {
   levelId: string; subareaId: string; checkpointId: string | null;
