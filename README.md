@@ -1,6 +1,6 @@
 # Super Arthur World
 
-A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code is the task-01 foundation: real Phaser bootstrap, shared pure contracts, input and pause guards. It is not a complete game or campaign.
+A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code includes the task-01 foundation and task-02 deterministic terrain arena: real Phaser presentation, shared pure contracts, input/pause guards, slopes, water/climbing, safe transfers, dynamic supports and bounded camera. It is not a complete game or campaign.
 
 ## Tools and commands
 
@@ -13,11 +13,13 @@ Full-screen `test:e2e`, production `validate:content`, `qa:report` and release e
 
 The lint command uses the TypeScript AST to reject `any`, debugger/type suppression and forbidden browser/engine imports in pure core; typecheck separately checks full strict types. It is a project boundary lint, not a claim to run ESLint.
 
+Browser tests write mutable screenshots through Playwright `testInfo.outputPath` into ignored `test-results/`. Task evidence is a frozen handoff snapshot, copied and inspected when that task is verified; later test runs must not overwrite earlier task evidence.
+
 ## Controls and boundaries
 
-Keyboard: arrows/WASD movement, Z/Space jump, X spin, Shift/J action, C reserve, Escape pause. The preparation harness displays actual actions; movement arrives in task 02. Touch supports multiple independent pointers. Gamepad arbitrates one active controller with 0.2 deadzone. Focus loss, orientation and active controller disconnect pause and release inputs; explicit Resume does not restore held keys/buttons.
+Keyboard: arrows/WASD movement, Z/Space jump, X spin, Shift/J action, C reserve, Escape pause. The arena uses actual fixed-step movement. Run with Action, crouch with Down, swim with Up/Down or jump, attach to ropes/fences with Up/Down and jump to detach. Fence gates switch sides with Action. Pipes/doors require their authored direction. Recomeçar arena starts a fresh attempt. This small fixture establishes terrain behavior; final campaign artwork, forms, enemies and saves belong to later tasks. Touch supports multiple independent pointers. Gamepad arbitrates one active controller with 0.2 deadzone. Focus loss, orientation and active controller disconnect pause and release inputs; explicit Resume does not restore held keys/buttons.
 
-`src/core` imports no Phaser/DOM/storage; `src/input` samples devices; `src/app` composes the one Phaser instance. Shared contracts are in `types.ts`, `events.ts`, `schema.ts`; changes are coordinated serially. Test prose `normalJump` aliases canonical Action `jump`.
+`src/core` imports no Phaser/DOM/storage; `src/input` samples devices; `src/app` composes the one Phaser instance. Shared contracts are in `types.ts`, `events.ts`, `schema.ts`; changes are coordinated serially. `TerrainSimulation` is the single position authority; `CollisionSolver` uses at most 4px substeps and 64px/tick, with swept moving surfaces and high-foot tilted contacts. `LevelScene` only renders views and scrolls the camera. Host-created UUID attempt identities produce deterministic UUID event IDs; safe restart advances the local attempt ordinal, while replay preserves the supplied identity. No wall-clock or global random source enters core. Test prose `normalJump` aliases canonical Action `jump`.
 
 Cloud/auth/schema provisioning is task 05. `.env.example` contains only public Supabase configuration placeholders. Missing/invalid configuration keeps guest preparation available and indicates sync unavailable. No tokens or provider secrets belong in source or the public repository.
 
