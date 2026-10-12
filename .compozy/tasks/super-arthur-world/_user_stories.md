@@ -43,7 +43,7 @@ Canonical acceptance catalog for [_prd.md](_prd.md); component and test mapping 
 | US-027 | Game Over | Player | Difficulty-specific reset |
 | US-028 | Overworld | Explorer | Unlock routes and replay |
 | US-029 | Secrets | Explorer | Secret worlds and travel |
-| US-030 | Campaign | Player | Play 120 original levels |
+| US-030 | Campaign | Player | Play 24 original levels |
 | US-031 | Completion | Explorer | Finish story and reach 100% |
 | US-032 | Persistence | Guest | Local continuation |
 | US-033 | Accounts | Account player | Private synchronized continuation |
@@ -381,10 +381,10 @@ Edge cases:
 - EC-2: Reset a relevant world → its owned routes reset while preserved destinations remain reachable under the visited-world rule.
 
 ### US-030: Complete original campaign
-As a player, I want 120 real original levels so that the game delivers the selected campaign rather than a short demo.
+As a player, I want 24 real original levels so that the game delivers the selected campaign with all selected mechanical families.
 
 Acceptance criteria:
-- AC-1: Given the campaign catalog, when I explore all worlds, then there are exactly 10 main worlds, 2 secret worlds and 120 playable levels; subareas/exits do not inflate the count.
+- AC-1: Given the campaign catalog, when I explore all worlds, then there are exactly 10 main worlds, 2 secret worlds and 24 playable levels; subareas/exits do not inflate the count.
 - AC-2: Given the full campaign, when reviewed and played, then levels have distinct traversal/objective/hazard arrangements and the required mechanical families have actual authored uses.
 
 Edge cases:
@@ -520,6 +520,6 @@ Each story above was probed against invalid input, missing state, limits, permis
 | SW-07 | Repetition | US-001–US-040 | Repeated input, defeat, pickup, exit, import or retry does not duplicate unique rewards, lose multiple lives or count the same achievement twice. |
 | SW-08 | Ordering | US-001–US-040 | Prerequisites are enforced; Game Over wins over respawn, resets invalidate old checkpoints, locked routes cannot be entered through stale menus. |
 | SW-09 | State transitions | US-001–US-040 | Deleted/reset campaigns, defeated entities and consumed items cannot receive actions as if still active; transitions clear stale input and ownership. |
-| SW-10 | Scale | US-001–US-040 | Validate empty, typical and complete 120-level campaigns; unusually dense or malformed content is bounded/rejected, not a promise of arbitrary-size mod support. Account/data volumes are tested proportionally to six slots, without enterprise load requirements. |
+| SW-10 | Scale | US-001–US-040 | Validate empty, typical and complete 24-level campaigns; unusually dense or malformed content is bounded/rejected, not a promise of arbitrary-size mod support. Account/data volumes are tested proportionally to six slots, without enterprise load requirements. |
 
 Author-default values and content proposals originate in the PRD and must not be described downstream as user-confirmed facts. No implementation technique is mandated by this story catalog.

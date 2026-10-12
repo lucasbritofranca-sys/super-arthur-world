@@ -1,6 +1,6 @@
 # Super Arthur World
 
-A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code includes the foundation, deterministic terrain arena, forms, reserve, temporary powers, mounts, objects, blocks, enemy interactions and boss controllers. Task 04 adds the pure campaign/reward/checkpoint/reset authority and six-slot commands. Real Phaser presentation uses the same pure simulation as tests. The authored 120-level campaign, complete menus and cloud synchronization belong to later tasks. The current interactive arena is a development harness.
+A non-commercial, single-player browser platformer experiment. The complete planned game is described in `.compozy/tasks/super-arthur-world/`. Current code includes the foundation, deterministic terrain arena, forms, reserve, temporary powers, mounts, objects, blocks, enemy interactions and boss controllers. Task 04 adds the pure campaign/reward/checkpoint/reset authority and six-slot commands. Real Phaser presentation uses the same pure simulation as tests. The authored 24-level campaign, complete menus and cloud synchronization belong to later tasks. The current interactive arena is a development harness.
 
 ## Tools and commands
 

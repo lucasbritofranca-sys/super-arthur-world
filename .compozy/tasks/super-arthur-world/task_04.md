@@ -29,7 +29,7 @@ Deliver the pure campaign transition rules that own progression, rewards, contin
 1. MUST implement six-slot domain isolation, map-only downward difficulty changes and Easy/Classic/Hard profiles without changing terrain/physics.
 2. MUST deduct ordinary death once from current lives, never checkpoint-era lives; terminal death commits exactly one scoped reset and renewed lives before Continue.
 3. MUST implement PRD-owned level/world/campaign reset boundaries, sanctuary revocation, retained visited-world access and invalidated continuation.
-4. MUST commit medallions, exits, bonuses and unique reward marks together; enforce bounded counters and separate 120/150/600 completion denominators.
+4. MUST commit medallions, exits, bonuses and unique reward marks together; enforce bounded counters and separate 24/34/120 completion denominators.
 5. MUST derive normal/secret/replay/secret-network routes from actual content conditions and preserved access, avoiding stale unlocked caches.
 6. MUST expose immutable campaign command results and persistence intent; do not fake local/cloud durability in a pure reducer test.
 </requirements>
@@ -114,7 +114,7 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 - [x] UT-040 — US-028.EC-2: Classic-reset the world owning a secret shortcut.
 - [x] UT-041 — US-029.EC-1: Travel to secret02 before its required network exits are complete.
 - [x] UT-042 — US-029.EC-2: Reset secret01 after visiting secret02.
-- [x] UT-045 — US-031.EC-1: With 120 levels,149 exits,600 medallions, then separately 120/150/599, CompletionSystem reports below 100% in both fixtures.
+- [x] UT-045 — US-031.EC-1: With 24 levels,33 exits,120 medallions, then separately 24/34/119, CompletionSystem reports below 100% in both fixtures.
 - [x] UT-046 — US-031.EC-2: Classic-reset one completed world after 100%.
 
 ### Integration
@@ -124,7 +124,7 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 - [x] IT-033 — US-026: With lives=3 and a committed checkpoint, fall into a pit.
 - [x] IT-035 — US-027: Parameterize zero-life Easy/Classic/Hard campaigns with progress in two worlds and another occupied slot.
 - [x] IT-037 — US-028: Complete normal and secret exits of one accessible level.
-- [x] IT-038 — US-029: Earn the qualifying main-world secret exit, enter secret01, complete its ten required network routes and select secret02.
+- [x] IT-038 — US-029: Earn the qualifying main-world secret exit, enter secret01, complete its two required network routes and select secret02.
 
 Validation commands: use the actual locked `pnpm` scripts from the TechSpec — `typecheck`, `lint`, `test`, `test:integration`, `test:e2e`, `validate:content`, `build` and `qa:report` as applicable to the slice. Execute scoped implemented gates for intermediate handoff; full candidate gates and independent browser journeys are mandatory before publication. Record exact commands and nonzero failure results. Browser suites use native Playwright, with supported browser control tools for actual interactive journeys; no shell-only substitute for game/UI verification.
 

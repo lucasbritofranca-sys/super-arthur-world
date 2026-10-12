@@ -105,9 +105,9 @@ Every story and explicit edge case has its own row. A case ID can appear in addi
 | US-029 | Secret network — complete journey | — | IT-038 | — |
 | US-029.EC-1 | Secret network — edge 1 | UT-041 | — | — |
 | US-029.EC-2 | Secret network — edge 2 | UT-042 | — | — |
-| US-030 | 120-level content — complete journey | — | IT-039 | — |
-| US-030.EC-1 | 120-level content — edge 1 | UT-043 | — | — |
-| US-030.EC-2 | 120-level content — edge 2 | UT-044 | — | — |
+| US-030 | 24-level content — complete journey | — | IT-039 | — |
+| US-030.EC-1 | 24-level content — edge 1 | UT-043 | — | — |
+| US-030.EC-2 | 24-level content — edge 2 | UT-044 | — | — |
 | US-031 | Story versus 100 percent — complete journey | — | IT-040 | — |
 | US-031.EC-1 | Story versus 100 percent — edge 1 | UT-045 | — | — |
 | US-031.EC-2 | Story versus 100 percent — edge 2 | UT-046 | — | — |
@@ -156,7 +156,7 @@ Every story and explicit edge case has its own row. A case ID can appear in addi
 | POST /rest/v1/game_saves | Initial insert; duplicate, invalid version/slot/revision/bytes/owner | UT-053, UT-054 | IT-060, IT-061, IT-062, IT-044 | E2E-010 |
 | PATCH /rest/v1/game_saves | CAS accepted/zero rows; immutable identity/monotonicity/owner failures | UT-053, UT-054 | IT-063, IT-064, IT-065, IT-044, IT-069 | — |
 
-Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run, bounded counter/content, RLS, duplicate event, interruption, ordering and transition cases above. It is not forty duplicated generic tests. Scale is this game's six slots/120 levels and supported dense fixture, never an enterprise load target.
+Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run, bounded counter/content, RLS, duplicate event, interruption, ordering and transition cases above. It is not forty duplicated generic tests. Scale is this game's six slots/24 levels and supported dense fixture, never an enterprise load target.
 
 ## Unit Tests
 
@@ -202,9 +202,9 @@ Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run
 - **UT-040** (error; owner hint task_04; US-028.EC-2): Classic-reset the world owning a secret shortcut; that shortcut becomes locked while another visited world's entrance remains unlocked.
 - **UT-041** (error; owner hint task_04; US-029.EC-1): Travel to secret02 before its required network exits are complete; ProgressionSystem returns route_locked and retains the current map node.
 - **UT-042** (state; owner hint task_04; US-029.EC-2): Reset secret01 after visiting secret02; owned network exits reset but the retained visited-world entry rule still permits return to secret02.
-- **UT-043** (idempotency; owner hint task_06; US-030.EC-1): Parameterize malformed catalogs with missing level120, duplicate level001 and an exit to unknown level999; ContentValidator returns the corresponding missing/duplicate/dangling identity error.
+- **UT-043** (idempotency; owner hint task_06; US-030.EC-1): Parameterize malformed catalogs with missing level024, duplicate level001 and an exit to unknown level999; ContentValidator returns the corresponding missing/duplicate/dangling identity error.
 - **UT-044** (error; owner hint task_06; US-030.EC-2): Validate a mandatory flight route requiring a consumed feather with no dispenser or ground alternative; ContentValidator reports missing_recovery_route and blocks publication.
-- **UT-045** (state; owner hint task_04; US-031.EC-1): With 120 levels,149 exits,600 medallions, then separately 120/150/599, CompletionSystem reports below 100% in both fixtures.
+- **UT-045** (state; owner hint task_04; US-031.EC-1): With 24 levels,33 exits,120 medallions, then separately 24/34/119, CompletionSystem reports below 100% in both fixtures.
 - **UT-046** (state; owner hint task_04; US-031.EC-2): Classic-reset one completed world after 100%; recomputed completion decreases and the cosmetic flag never reinstates erased exits or hides hazard foreground contrast.
 - **UT-047** (idempotency; owner hint task_05; US-034.EC-2): Submit the same import intent/revision twice; SyncService accepts one authoritative version and duplicate import cannot award progression rewards.
 - **UT-048** (error; owner hint task_09; US-040.EC-1): qa:report validation receives a relevant unresolved QA bug or deployed SHA different from the verified candidate; it returns blocked rather than complete.
@@ -217,9 +217,9 @@ Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run
 - **UT-055** (state; owner hint task_01; App/config): Parse two valid VITE_SUPABASE public values versus absent/malformed values; configuration returns an enabled client only for the valid pair, otherwise guest-ready syncUnavailable state.
 - **UT-056** (happy; owner hint task_02; Game adapter): Camera adapter applies right look-ahead to a 384x216 logical view at its rightmost bound; camera x never exceeds the authored maximum and simulation coordinates remain unchanged.
 - **UT-057** (error; owner hint task_02; Game adapter): Reject content camera rectangle with width=-1 or nonexistent subarea before scene creation; surface invalid content with its field path instead of spawning an unbounded camera.
-- **UT-058** (happy; owner hint task_07; UI view models): Construct a conflict view for local Classic checkpoint C1 at 120/150/599 and remote Hard reset at 0/0/0; both cards expose source, difficulty, checkpoint, counts and reset distinction as separate version summaries.
+- **UT-058** (happy; owner hint task_07; UI view models): Construct a conflict view for local Classic checkpoint C1 at 24/34/119 and remote Hard reset at 0/0/0; both cards expose source, difficulty, checkpoint, counts and reset distinction as separate version summaries.
 - **UT-059** (error; owner hint task_07; UI view models): Construct slots after logout with account:A slot1 and guest slot2 cached; view model emits only guest slots and never includes account:A's campaign title/progress.
-- **UT-060** (happy; owner hint task_06; ContentValidator): Validate the final catalog with 12 worlds, 120 level IDs, 150 exit IDs, 600 medallion IDs and 10 bosses; return zero issues while excluding subareas from the level count.
+- **UT-060** (happy; owner hint task_06; ContentValidator): Validate the final catalog with 12 worlds, 24 level IDs, 34 exit IDs, 120 medallion IDs and 10 bosses; return zero issues while excluding subareas from the level count.
 - **UT-061** (happy; owner hint task_09; QA report gate): qa:report validator receives candidate SHA=abc123, deployed SHA=abc123, all required journey evidence present and zero relevant open bugs; it accepts that complete report without fabricating missing artifacts.
 - **UT-062** (boundary; owner hint task_02; One-way terrain): Parameterize a top-only platform at y=100: a rising actor crosses from below without support; a descending bottom crossing 99→101 lands at 100 with that platform's single support ID.
 - **UT-063** (boundary; owner hint task_05; Save schema): Decode valid nested Campaign with lives=99,score=9999999,timer=216000 and medallionmask=31; parameterize bounds+1 and NaN; strict runtime validator rejects each invalid field with its path and code, without clamping a damaged save into invented progress.
@@ -265,9 +265,9 @@ Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run
 - **IT-035** (owner hint task_04; US-027): Parameterize zero-life Easy/Classic/Hard campaigns with progress in two worlds and another occupied slot; reset erases exactly level/world/campaign ownership and renews lives to 10/5/3 before Continue, with the other slot unchanged.
 - **IT-036** (owner hint task_05; US-027.EC-1): Queue a localVersion=2 checkpoint write, commit the localVersion=3 reset then retry the older write; LocalRepository.commit with its stale expectedVersion returns local-conflict and retains the Game Over destination.
 - **IT-037** (owner hint task_04; US-028): Complete normal and secret exits of one accessible level; its two stable exit IDs unlock their two declared map edges, while replay remains selectable.
-- **IT-038** (owner hint task_04; US-029): Earn the qualifying main-world secret exit, enter secret01, complete its ten required network routes and select secret02; prerequisites permit the authored second secret world.
-- **IT-039** (owner hint task_06; US-030): Load the production content catalog and solve each mandatory route fixture; catalog exposes 120 unique playable levels in 10 main and 2 secret worlds with distinct authored layout signatures.
-- **IT-040** (owner hint task_07; US-031): Defeat the final staged boss and skip the ending; saved storyComplete=true, exploration is selectable and completion uses 120 levels,150 exits,600 medallions as separate denominators.
+- **IT-038** (owner hint task_04; US-029): Earn the qualifying main-world secret exit, enter secret01, complete its two required network routes and select secret02; prerequisites permit the authored second secret world.
+- **IT-039** (owner hint task_06; US-030): Load the production content catalog and solve each mandatory route fixture; catalog exposes 24 unique playable levels in 10 main and 2 secret worlds with distinct authored layout signatures.
+- **IT-040** (owner hint task_07; US-031): Defeat the final staged boss and skip the ending; saved storyComplete=true, exploration is selectable and completion uses 24 levels,34 exits,120 medallions as separate denominators.
 - **IT-041** (owner hint task_05; US-032.EC-1): Parameterize IndexedDB denial, quota exhaustion and external clearing; SaveStore/UI emits unavailable/not_saved or empty-after-clear instead of local_saved.
 - **IT-042** (owner hint task_05; US-032.EC-2): Corrupt slot2 JSON while slot1 is valid; opening slots exposes recovery for slot2 and slot1 remains playable with its original checksum.
 - **IT-043** (owner hint task_05; US-033.EC-1): Expire the access token while network writes fail; a checkpoint still commits locally and UI shows cloud_pending/sign_in_required without discarding the campaign.
@@ -327,7 +327,7 @@ Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run
 - Unit/fixture definitions use Techspec engineering tuning, including 60Hz, 16px tiles, maximum five catch-up steps, 4px collision substeps, 64px/tick displacement, 0.2 gamepad deadzone, lives 0..99, score <=9999999, residual coin/bonus 0..99, medallion mask 0..31, timer <=216000 and payload <=262144 UTF-8 bytes. Insert whitespace in display text; these are numeric contracts, not release claims.
 - Replayed traces at 30/60/120 render FPS must yield identical executed fixed-tick positions/contact/timer outcomes. Bounded slow spikes deliberately discard backlog rather than comparing unequal executed ticks. A gate failure must repair the solver, not remove a mechanic.
 - E2E-009/010 and real-Supabase cases cannot pass with only MCP login or mocked OAuth. Record configured game provider, test identities, actual read/write ownership outcomes and second-browser continuation. Do not include token/secret material. Actual mobile Safari/Chrome evidence is separate from Playwright WebKit/viewport emulation.
-- Independent task09 QA covers full release journeys beyond authored unit assertions: guest create→checkpoint→ordinary death→Game Over→reopen; Google account→import/conflict→second-device continuation→logout; exploration/boss/secret/100% evidence; keyboard/gamepad/touch/pause/audio; all 120 cataloged levels and all mechanical families. Each stage links actual runs/screenshots/reproduction traces, or explicitly reports unverified/blocked. QA evidence is not an invented test API.
+- Independent task09 QA covers full release journeys beyond authored unit assertions: guest create→checkpoint→ordinary death→Game Over→reopen; Google account→import/conflict→second-device continuation→logout; exploration/boss/secret/100% evidence; keyboard/gamepad/touch/pause/audio; all 24 cataloged levels and all mechanical families. Each stage links actual runs/screenshots/reproduction traces, or explicitly reports unverified/blocked. QA evidence is not an invented test API.
 - Publication gate checks the verified source revision, real tested build and relevant open bug registry. Relevant failure prevents publication. After deploy, run guest/account smoke at the real Vercel URL and record displayed SHA/contentVersion; a mismatched deployed revision fails the gate.
 
 ## Ownership Hints
@@ -339,6 +339,6 @@ Shared sweep SW-01–SW-10 is exercised by the concrete invalid-state, first-run
 | task_03 | IT-009, IT-010, IT-012, IT-014, UT-015, UT-016, IT-015, UT-017, UT-018, IT-016, UT-019, UT-020, IT-017, UT-021, IT-018, IT-019, UT-022, IT-020, IT-021, UT-023, UT-024, IT-025, UT-028, IT-026, IT-027, UT-029, IT-028 | Forms/mount/objects/enemies/bosses |
 | task_04 | UT-003, UT-025, UT-026, UT-030, IT-030, UT-032, UT-033, IT-031, UT-034, IT-033, UT-037, IT-035, UT-038, IT-037, UT-039, UT-040, IT-038, UT-041, UT-042, UT-045, UT-046 | Rewards/progress/resets/map |
 | task_05 | IT-001, UT-001, UT-002, IT-003, IT-011, IT-022, IT-024, UT-031, IT-032, UT-035, UT-036, IT-034, IT-036, IT-041, IT-042, IT-043, IT-044, IT-045, UT-047, IT-046, IT-047, IT-048, IT-049, IT-050, IT-051, UT-051, UT-052, UT-053, UT-054, IT-058, IT-059, IT-060, IT-061, IT-062, IT-063, IT-064, IT-065, IT-066, IT-069, IT-070, IT-071, UT-063, UT-064 | Save/auth/cloud |
-| task_06 | IT-039, UT-043, UT-044, IT-052, UT-060 | 120-level content/assets |
+| task_06 | IT-039, UT-043, UT-044, IT-052, UT-060 | 24-level content/assets |
 | task_07 | E2E-001, IT-002, E2E-002, E2E-003, E2E-004, IT-005, E2E-005, E2E-006, IT-029, E2E-007, IT-040, E2E-008, E2E-009, E2E-010, E2E-011, E2E-012, E2E-013, IT-053, IT-054, E2E-014, E2E-015, IT-055, UT-058, UT-059, IT-067, IT-068, IT-072, IT-073 | UI/browser integration/accessibility/performance |
 | task_09 | IT-056, UT-048, IT-057, UT-061 | Independent QA/report/release |

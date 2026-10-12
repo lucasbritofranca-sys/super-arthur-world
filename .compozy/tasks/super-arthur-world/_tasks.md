@@ -46,7 +46,7 @@ graph:
 
 ## MVP Boundary
 
-Tasks 01–07 implement the entire confirmed PRD: all required mechanical families, 120 original levels, 12 worlds, six solo slots, three penalty modes, guest and optional Google account continuation. Tasks 08–09 prepare independent QA, execute it, correct failures and verify publication. No required content or behavior is deferred; no post-MVP scope is proposed. Multiplayer, copied Nintendo content, enterprise infrastructure and Compozy execution runtime remain outside scope.
+Tasks 01–07 implement the entire confirmed PRD: all required mechanical families, 24 original levels, 12 worlds, six solo slots, three penalty modes, guest and optional Google account continuation. Tasks 08–09 prepare independent QA, execute it, correct failures and verify publication. No required content or behavior is deferred; no post-MVP scope is proposed. Multiplayer, copied Nintendo content, enterprise infrastructure and Compozy execution runtime remain outside scope.
 
 This is an execution manifest for native Codex App delegation. User authorization for autonomous implementation, commits, push, integrations and deployment persists in AGENTS.md; no new approval loop is introduced. Complete the authoring audit of PRD, TechSpec, test contract and this task package before starting code. Actual platform authentication/provider access blockers remain concrete external dependencies, not a reason to omit account requirements or stall core tasks.
 
@@ -61,7 +61,7 @@ The frontmatter graph is the sole authoritative dependency store. The table's De
 | 03 | [Forms, Mounts, Objects, Combat and Boss Mechanics](task_03.md) | completed | critical | task_02 |
 | 04 | [Campaign Progression, Rewards and Scoped Reset Reducers](task_04.md) | completed | critical | task_03 |
 | 05 | [Transactional Saves, Google Accounts and Dedicated Integrations](task_05.md) | pending | critical | task_04 |
-| 06 | [Original Assets and the Complete 120-Level Campaign](task_06.md) | pending | high | task_04 |
+| 06 | [Original Assets and the Complete 24-Level Campaign](task_06.md) | pending | high | task_04 |
 | 07 | [Complete Browser Experience, Accessibility and Integration Remediation](task_07.md) | pending | critical | task_05, task_06 |
 | 08 | [QA Plan and Session Charters](task_08.md) | pending | high | task_07 |
 | 09 | [Real-User QA Execution and Verified Publication](task_09.md) | pending | critical | task_08 |
@@ -75,7 +75,7 @@ The frontmatter graph is the sole authoritative dependency store. The table's De
 | task_03 | frontend | Forms, Mounts, Objects, Combat and Boss Mechanics | 27 |
 | task_04 | frontend | Campaign Progression, Rewards and Scoped Reset Reducers | 21 |
 | task_05 | backend | Transactional Saves, Google Accounts and Dedicated Integrations | 43 |
-| task_06 | frontend | Original Assets and the Complete 120-Level Campaign | 5 |
+| task_06 | frontend | Original Assets and the Complete 24-Level Campaign | 5 |
 | task_07 | frontend | Complete Browser Experience, Accessibility and Integration Remediation | 28 |
 | task_08 | qa-report | QA Plan and Session Charters | 0 |
 | task_09 | qa-execution | Real-User QA Execution and Verified Publication | 4 |

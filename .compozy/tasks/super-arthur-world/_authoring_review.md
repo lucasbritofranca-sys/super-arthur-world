@@ -14,7 +14,7 @@ Executed after the last PRD/story edits:
 - Current title/protagonist: Super Arthur World / Arthur.
 - Restrained 16-bit art; Brazilian-inspired fantasy; short story and few dialogues.
 - Single-player only supersedes the original two-player answer.
-- 10 main worlds, 2 secret worlds, 120 original levels, keyboard/gamepad/touch.
+- 10 main worlds, 2 secret worlds, 24 original levels, keyboard/gamepad/touch.
 - Six local guest slots; optional account sync; explicit import and conflict choice.
 - Checkpoint/exit autosave; collectible accumulation at those boundaries.
 - Three difficulties, all with checkpoints of decreasing density; mode may only be lowered on the map.
@@ -24,7 +24,7 @@ Executed after the last PRD/story edits:
 
 ## Author defaults and limits
 
-Exact world distribution, names, 150 exits, five medallions per level, tuning values and detailed reset-owned substate are labeled author defaults, not user-confirmed answers. Technical interview and reference audit remain. Manual research does not prove exhaustive SNES parity.
+Exact world distribution, names, 34 exits, five medallions per level, tuning values and detailed reset-owned substate are labeled author defaults, not user-confirmed answers. Technical interview and reference audit remain. Manual research does not prove exhaustive SNES parity.
 
 ## Bug-oriented consistency corrections
 

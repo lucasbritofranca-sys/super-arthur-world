@@ -75,3 +75,7 @@ These are questions to resolve, not decisions or additional promised features:
 7. Technical interview after product decisions: framework alternatives informed by quality open-source game repositories, physics, content pipeline, state boundaries, data contracts, bug-focused validation, migrations and hosting/repository resources. Keep the design appropriate to a non-commercial AI programming experiment.
 
 Preserve the complete requested scope. Do not silently replace it with an MVP or treat pending answers as confirmed requirements.
+
+## Confirmed campaign-size amendment — 2026-10-12
+
+The user accepted reducing the campaign from 120 to 24 original levels: two in each of ten main and two secret worlds. This supersedes the earlier size decision only. All selected mechanical families, ten main-world bosses, four sanctuaries, six solo slots, difficulties, controls, saves, Google synchronization and independent QA/publication remain required. The second level of each main world contains its boss; subareas do not inflate the count. Author defaults aligned with this decision are 24 normal exits plus ten secret exits (one per main world), 34 exits total, five medallions per level and 120 medallions total. Historical verification reports retain their original tested sizes and are not fresh evidence for the amended campaign.

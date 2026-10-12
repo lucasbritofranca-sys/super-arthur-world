@@ -14,7 +14,7 @@ Engineering defaults for the original bonus game: a 3-by-3 symbol grid has one d
 
 `Campaign.pendingBonus` is optional in schema v1: absent means no interrupted round. Its ID, seed, tick and stopped cells are persisted at each stop; reopen resumes the exact remaining stops and cannot duplicate line rewards. `Campaign.openingSeen` is optional in v1: absent means false. Task 07's story controller sets it after displaying the opening, so task 05's snapshot codec must preserve it. No schema migration or second save authority is required for either optional field.
 
-`catalogIssues` verifies level/world/route/exit/sanctuary references without pretending small test arenas are the authored campaign. Production content completeness and geometry diversity are task 06. Completion always displays separate denominators of 120 levels, 150 exits and 600 medallions; aggregate percentage remains below 100 until all three are exact. The final boss ends the short story independently of full exploration.
+`catalogIssues` verifies level/world/route/exit/sanctuary references without pretending small test arenas are the authored campaign. Production content completeness and geometry diversity are task 06. Completion always displays separate denominators of 24 levels, 34 exits and 120 medallions; aggregate percentage remains below 100 until all three are exact. The final boss ends the short story independently of full exploration.
 
 Six-slot commands reject invalid slot numbers, occupied creation and campaign identity replacement; `replaceActiveSlot` applies a successful reducer result to exactly its campaign. Real save menus, deletion confirmation and local/account namespaces are implemented by tasks 05/07.
 

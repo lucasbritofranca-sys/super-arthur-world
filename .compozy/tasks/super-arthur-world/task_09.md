@@ -29,7 +29,7 @@ Have an independent native QA subagent verify the complete candidate and block r
 1. MUST read all in-scope docs/qa scenarios, open bug registry, cycle charters, TechSpec, ADRs and prior evidence before execution.
 2. MUST adapt qa-execution guidance to native Codex/Playwright using qa-docs-path=docs/qa; no Compozy runtime, browser-use-only dependency or daemon harness.
 3. MUST run ordinary build/typecheck/lint/unit/integration/content/E2E gates and drive actual public game screens; shell-only checks cannot replace browser QA.
-4. MUST independently inspect all 120 authored layouts/routes and required mechanics, execute complete guest and real Google/account/conflict/reset journeys and report exact device/browser scope.
+4. MUST independently inspect all 24 authored layouts/routes and required mechanics, execute complete guest and real Google/account/conflict/reset journeys and report exact device/browser scope.
 5. MUST register deduplicated BUG-YYYYMMDD-slug defects, delegate fixes, capture appropriate failing-before/passing-after evidence and repeat affected journeys.
 6. MUST keep publication blocked while relevant failures or required real account evidence remain unresolved; never fabricate completion from unavailable access.
 7. MUST commit/push/deploy the verified revision with existing authorization, check safe environment/build identity and run live guest/account smoke on the published URL.

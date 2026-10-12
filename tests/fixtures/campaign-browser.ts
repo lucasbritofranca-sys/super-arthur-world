@@ -53,7 +53,7 @@ export function campaignJourney(id: string): unknown {
   if (id === 'IT-038') {
     const c = campaignCatalog(); let s = inLevel(c, 'main01.level03'); s.campaign.progress.visitedWorlds = ['main01']; s = success(exitFixture(s, c, 'main01.level03.secret')); s = success(travel(s, c, 'secret01.level01'));
     check(s.campaign.progress.visitedWorlds.includes('secret01'), 'secret01 entry must record visited access');
-    for (let i = 0; i < 10; i++) { const levelId = `secret01.level${String(i + 1).padStart(2, '0')}`; s = success(enterLevel(s, c, levelId, uuid(500 + i))); s = success(exitFixture(s, c, `${levelId}.normal`, 600 + i)); }
+    for (let i = 0; i < 2; i++) { const levelId = `secret01.level${String(i + 1).padStart(2, '0')}`; s = success(enterLevel(s, c, levelId, uuid(500 + i))); s = success(exitFixture(s, c, `${levelId}.normal`, 600 + i)); }
     check(c.secretNetworkExitIds.every(exit => s.campaign.progress.exits.includes(exit)), 'ten actual network exits not completed'); s = success(travel(s, c, 'secret02.level01')); check(s.activeLevelId === 'secret02.level01' && s.campaign.progress.visitedWorlds.includes('secret02'), 'qualifying network must permit second secret destination'); return s.campaign;
   }
   throw new Error(`Unknown campaign journey ${id}`);

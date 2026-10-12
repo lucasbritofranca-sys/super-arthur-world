@@ -106,7 +106,7 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 
 ### Unit
 
-- [ ] UT-058 — UI view models: Construct a conflict view for local Classic checkpoint C1 at 120/150/599 and remote Hard reset at 0/0/0.
+- [ ] UT-058 — UI view models: Construct a conflict view for local Classic checkpoint C1 at 24/34/119 and remote Hard reset at 0/0/0.
 - [ ] UT-059 — UI view models: Construct slots after logout with account:A slot1 and guest slot2 cached.
 
 ### Integration

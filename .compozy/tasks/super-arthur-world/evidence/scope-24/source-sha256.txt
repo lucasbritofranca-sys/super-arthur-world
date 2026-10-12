@@ -1,0 +1,4 @@
+e680c676186e679b72c165ac78faa89a942660e76b2eb98187f2b725788d2b06  src/core/campaign/progression.ts
+e63c366c4d010467d5ab14700190af8a1a2acc9fb633ad9a4436fb214acbeb91  tests/fixtures/campaign.ts
+2cd5c31a3ac007b1d26a93fc8ada4b3f929436e2f26c895bb273a5af670bafdb  tests/fixtures/campaign-browser.ts
+c3559c8a10736b2446ba8b65181392b800728d48a5cb429f420e5157cf25436a  tests/unit/campaign.test.ts

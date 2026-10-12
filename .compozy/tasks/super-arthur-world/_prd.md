@@ -10,7 +10,7 @@ The intended players are the project owner, people testing the game and platform
 
 ## Goals
 
-- G-01: Play all 120 original levels across 10 main and 2 secret worlds, with a planned main route, alternate exits and secret shortcuts.
+- G-01: Play all 24 original levels across 10 main and 2 secret worlds, with a planned main route, alternate exits and secret shortcuts.
 - G-02: Use the reference's movement, transformations, mount, interaction, enemy, environment, map and bonus families; preserve their distinct gameplay roles rather than replacing them with generic jumping.
 - G-03: Play through keyboard, gamepad or touch with the same game rules and usable menus.
 - G-04: Select Easy, Classic or Hard and observe the specified death, Game Over and downward-only difficulty rules.
@@ -62,9 +62,9 @@ Research confidence: the official Nintendo manuals directly support major action
 
 ### F-03: Original campaign
 
-Exactly 120 playable, distinct level layouts across the 12 worlds; exits and subareas are not counted as additional levels. Levels may reuse enemies and tiles but must have meaningful differences in traversal, hazards, objectives and secrets. Reskinning one layout 120 times does not satisfy this requirement.
+Exactly 24 playable, distinct level layouts across the 12 worlds; exits and subareas are not counted as additional levels. Levels may reuse enemies and tiles but must have meaningful differences in traversal, hazards, objectives and secrets. Reskinning one layout 24 times does not satisfy this requirement.
 
-Author default: 10 levels per world; the final level of each main world contains its boss. Four permanent switch sanctuaries are included within the 120 levels. Two secret worlds each contain 10 challenge levels. Every ordinary level supports the three difficulty variants without changing terrain or player physics. The content catalog must identify world, entry, exit destinations, checkpoints, collectibles, enemy variants and mechanical families per level.
+Author default: 2 levels per world; the final level of each main world contains its boss. Four permanent switch sanctuaries are included within the 24 levels. Two secret worlds each contain 2 challenge levels. Every ordinary level supports the three difficulty variants without changing terrain or player physics. The content catalog must identify world, entry, exit destinations, checkpoints, collectibles, enemy variants and mechanical families per level.
 
 Author world proposals, in main order: Mata das Nascentes, Campos do Cerrado, Veredas do Pantanal, Grutas da Serra, Trilhas da Caatinga, Mangues e Marés, Ruínas da Chapada, Alturas da Mantiqueira, Forjas da Pedra, Cidadela do Eclipse. Secret worlds: Caminhos do Encantado and Memória das Constelações. These are fantasy reinterpretations, not geographic claims. Water, sky, low-grip and lava mechanics appear in suitable fantasy subareas. Use muted greens, earth, stone and water tones with limited accents and readable contrast.
 
@@ -109,14 +109,14 @@ Account saves are private to their owner. Optional account sign-in uses Google, 
 
 ### F-06: Map, secrets and completion
 
-Normal exits advance the planned route; distinct secret exits open explicit alternate paths. Each exit has a stable identity and destination, and repeating it never double-counts completion. Author default: 30 additional secret exits across the main worlds, three per main world, for 150 total exits. The first secret travel network is reachable through exploratory exits; its completed routes connect unlocked worlds. Complete its routes to access the second secret challenge world. Exact edges belong in the content catalog and must be solvable without circular mandatory requirements.
+Normal exits advance the planned route; distinct secret exits open explicit alternate paths. Each exit has a stable identity and destination, and repeating it never double-counts completion. Author default: 10 additional secret exits across the main worlds, one per main world, for 34 total exits. The first secret travel network is reachable through exploratory exits; its completed routes connect unlocked worlds. Complete its routes to access the second secret challenge world. Exact edges belong in the content catalog and must be solvable without circular mandatory requirements.
 
-Winning the final boss ends the story; exploration continues afterward. 100% requires completion of all 120 levels, discovery of all 150 defined exits and collection of all five medallions in each level. Show separate level, exit and collectible counts so a player can see what is missing. A secret-content completion unlocks an original cosmetic world variant; it does not change physics, invalidate checkpoints or hide gameplay hazards.
+Winning the final boss ends the story; exploration continues afterward. 100% requires completion of all 24 levels, discovery of all 34 defined exits and collection of all five medallions in each level. Show separate level, exit and collectible counts so a player can see what is missing. A secret-content completion unlocks an original cosmetic world variant; it does not change physics, invalidate checkpoints or hide gameplay hazards.
 
 ## Business Rules
 
 - BR-01: One active slot and one player; modifying or resetting it cannot modify another slot.
-- BR-02: Reference breadth is preserved except recorded user overrides: original identity/content, single player, 120 levels, six slots, three modes, autosave, persistent collectibles and selected reset rules.
+- BR-02: Reference breadth is preserved except recorded user overrides: original identity/content, single player, 24 levels, six slots, three modes, autosave, persistent collectibles and selected reset rules.
 - BR-03: Main-world access follows the authored route graph. A secret exit is not a second level.
 - BR-04: A persistent reward is keyed to a unique achievement; revisiting, retrying or repeated input cannot award it twice.
 - BR-05: Lives never become negative. One death cannot deduct multiple lives; terminal death causes exactly one Game Over reset.
@@ -158,7 +158,7 @@ No mechanical family or original level is excluded to make the document smaller.
 
 These are delivery checks for the experiment, not commercial KPIs:
 
-- The campaign catalog contains 120 distinct playable levels in 12 worlds; QA verifies every level's entries, exits, checkpoints and collectible reachability.
+- The campaign catalog contains 24 distinct playable levels in 12 worlds; QA verifies every level's entries, exits, checkpoints and collectible reachability.
 - Every M-01–M-16 mechanical family has an implemented equivalent and passing evidence for its defining interactions; uncertain reference details remain labeled until investigated.
 - Keyboard, gamepad and touch can start, play, pause and continue a campaign; device and browser evidence identifies what was actually tested.
 - Each difficulty's Game Over produces exactly its defined reset boundary, and reopening or delayed synchronization does not silently undo it.
@@ -185,3 +185,7 @@ Connectivity is resolved: continue locally if the connection drops with the game
 - [Nintendo original manual](https://www.nintendo.co.jp/clvs/manuals/common/pdf/CLV-P-SAAAE.pdf) and [condensed manual](https://www.nintendo.com/es-es/games/oms/snes-classic/manuals/super-mario-world/manual.pdf): primary reference inputs; not proof of exhaustive coverage.
 - [SuperTux browser build](https://play.supertux.org/): comparable direct browser access.
 - [Browser audio guidance](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Autoplay): interaction-dependent audio startup.
+
+## Confirmed campaign-size amendment — 2026-10-12
+
+The user accepted reducing the campaign from 120 to 24 original levels: two in each of ten main and two secret worlds. This supersedes the earlier size decision only. All selected mechanical families, ten main-world bosses, four sanctuaries, six solo slots, difficulties, controls, saves, Google synchronization and independent QA/publication remain required. The second level of each main world contains its boss; subareas do not inflate the count. Author defaults aligned with this decision are 24 normal exits plus ten secret exits (one per main world), 34 exits total, five medallions per level and 120 medallions total. Historical verification reports retain their original tested sizes and are not fresh evidence for the amended campaign.

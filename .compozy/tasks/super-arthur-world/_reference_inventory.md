@@ -31,7 +31,7 @@ Date: 2026-10-11. This is a scope/audit ledger, not proof of exhaustive fidelity
 
 ## Explicit adaptations
 
-Single-player only; original identity/content; Brazilian fantasy and restrained art; 120 levels; three difficulty profiles and selected Game Over scopes; checkpoints in every mode; six slots; optional account synchronization; accumulation of special collectibles; 100% includes those collectibles; autosave at checkpoint/exit and manual conflict choice. Do not treat differences here as accidental reference bugs.
+Single-player only; original identity/content; Brazilian fantasy and restrained art; 24 levels; three difficulty profiles and selected Game Over scopes; checkpoints in every mode; six slots; optional account synchronization; accumulation of special collectibles; 100% includes those collectibles; autosave at checkpoint/exit and manual conflict choice. Do not treat differences here as accidental reference bugs.
 
 ## Audit completion contract
 

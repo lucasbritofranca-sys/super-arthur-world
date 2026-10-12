@@ -29,7 +29,7 @@ Prepare a living independent QA plan for the complete implementation and its hig
 1. MUST read every ADR, all completed task evidence and existing per-task memory before planning.
 2. MUST adapt upstream qa-report guidance through native Codex tools because imported runtime-specific QA skills/daemons are not installed; use qa-docs-path=docs/qa.
 3. MUST create journey graphs, scenario files, cycle charters, deduplicated bug registry and dated report schema covering every public surface.
-4. MUST map all 40 stories, required mechanical families, 120 playable levels and real guest/account/conflict/reset journeys to runnable scenarios.
+4. MUST map all 40 stories, required mechanical families, 24 playable levels and real guest/account/conflict/reset journeys to runnable scenarios.
 5. MUST separate automated fixture, real browser, physical device and external account evidence; identify unavailable resources without assigning pass.
 6. MUST include dense-content/performance, one adjacent regression canary and full scope publication gate; no standalone Compozy CLI/UDS/config.toml product tests.
 </requirements>

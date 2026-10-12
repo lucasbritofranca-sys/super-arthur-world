@@ -1,11 +1,11 @@
 ---
 status: pending
-title: Original Assets and the Complete 120-Level Campaign
+title: Original Assets and the Complete 24-Level Campaign
 type: frontend
 complexity: high
 ---
 
-# Task 6: Original Assets and the Complete 120-Level Campaign
+# Task 6: Original Assets and the Complete 24-Level Campaign
 
 ## Overview
 
@@ -26,7 +26,7 @@ Author the full original campaign and its restrained Brazilian-fantasy presentat
 </critical>
 
 <requirements>
-1. MUST provide exactly 10 main worlds, 2 secret worlds, 120 levels, 150 exits, 600 medallions, four sanctuary levels and ten main-world bosses.
+1. MUST provide exactly 10 main worlds, 2 secret worlds, 24 levels, 34 exits, 120 medallions, four sanctuary levels and ten main-world bosses.
 2. MUST provide meaningful distinct traversal/objective/hazard/secret arrangements and design notes; subareas and alternate exits do not inflate level count.
 3. MUST use validated Tiled JSON, stable identities, supported collision shapes, safe checkpoint/transfer anchors, difficulty masks and mandatory-item recovery.
 4. MUST place every required family in actual authored levels with the reference ledger mapping; fixture coverage alone is insufficient.
@@ -38,7 +38,7 @@ Author the full original campaign and its restrained Brazilian-fantasy presentat
 ## Subtasks
 
 - [ ] 6.1 Author world order, route graph and complete content identities.
-- [ ] 6.2 Author 120 distinct layouts including secrets, sanctuaries and all boss stages.
+- [ ] 6.2 Author 24 distinct layouts including secrets, sanctuaries and all boss stages.
 - [ ] 6.3 Validate safe entry/checkpoint/subarea destinations and difficulty placement.
 - [ ] 6.4 Provide mandatory power/key/mount/ammunition replenishment or alternatives.
 - [ ] 6.5 Produce original pixel atlases, effects, music and sound with provenance.
@@ -57,7 +57,7 @@ Apply `cy-execute-task` for execution, then `cy-final-verify` before handoff/com
 ### Relevant Files
 
 - src/content/catalog.ts, worlds.ts, loader.ts, validator.ts — validated actual production content
-- public/content/worlds/, public/content/levels/ — 120 authored Tiled maps and world graph
+- public/content/worlds/, public/content/levels/ — 24 authored Tiled maps and world graph
 - public/assets/sprites/, tiles/, audio/, manifest.json — original media/provenance
 - src/game/story.ts, src/game/assets.ts — narrative/loading adapters
 - scripts/validate-content.ts, docs/content-catalog.md, tests/integration/content/ — catalog and reachability evidence
@@ -102,9 +102,9 @@ Cases assigned from [_tests.md](_tests.md), the canonical test contract. Read th
 
 ### Unit
 
-- [ ] UT-043 — US-030.EC-1: Parameterize malformed catalogs with missing level120, duplicate level001 and an exit to unknown level999.
+- [ ] UT-043 — US-030.EC-1: Parameterize malformed catalogs with missing level024, duplicate level001 and an exit to unknown level999.
 - [ ] UT-044 — US-030.EC-2: Validate a mandatory flight route requiring a consumed feather with no dispenser or ground alternative.
-- [ ] UT-060 — ContentValidator: Validate the final catalog with 12 worlds, 120 level IDs, 150 exit IDs, 600 medallion IDs and 10 bosses.
+- [ ] UT-060 — ContentValidator: Validate the final catalog with 12 worlds, 24 level IDs, 34 exit IDs, 120 medallion IDs and 10 bosses.
 
 ### Integration
 
@@ -116,7 +116,7 @@ Validation commands: use the actual locked `pnpm` scripts from the TechSpec — 
 ## Success Criteria
 
 - Every assigned test case implemented and passing.
-- The validator accepts the full 120-level/150-exit/600-medallion catalog and rejects malformed alternatives.
+- The validator accepts the full 24-level/34-exit/120-medallion catalog and rejects malformed alternatives.
 - Every mechanical family has actual playable placements and every mandatory route is recoverable.
 - Layout hashes and independent play/design review substantiate variation.
 - Requirements, acceptance/edge cases and actual deliverables agree with the canonical specs; unresolved relevant failures block a completion claim.

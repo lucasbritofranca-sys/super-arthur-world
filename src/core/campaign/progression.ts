@@ -16,12 +16,12 @@ export function deriveMap(campaign: Campaign, catalog: CampaignCatalog): { level
     worlds: catalog.worlds.map(w => ({ id: w.id, accessible: accessible.has(w.entryLevelId) })),
   };
 }
-export function completion(campaign: Campaign, catalog: CampaignCatalog): { levels: { count: number; total: 120 }; exits: { count: number; total: 150 }; medallions: { count: number; total: 600 }; percent: number; complete: boolean } {
+export function completion(campaign: Campaign, catalog: CampaignCatalog): { levels: { count: number; total: 24 }; exits: { count: number; total: 34 }; medallions: { count: number; total: 120 }; percent: number; complete: boolean } {
   const levels = catalog.levels.filter(l => campaign.progress.completedLevels.includes(l.id)).length;
   const exits = catalog.levels.flatMap(l => l.exits).filter(e => campaign.progress.exits.includes(e.id)).length;
   let medallions = 0; for (const l of catalog.levels) { const mask = campaign.progress.medallions[l.id] ?? 0; for (let n = 0; n < l.medallions.length; n++) if (mask & (1 << n)) medallions++; }
-  const complete = levels === 120 && exits === 150 && medallions === 600;
-  return { levels: { count: levels, total: 120 }, exits: { count: exits, total: 150 }, medallions: { count: medallions, total: 600 }, percent: complete ? 100 : Math.min(99.99, Math.floor((levels + exits + medallions) / 870 * 10000) / 100), complete };
+  const complete = levels === 24 && exits === 34 && medallions === 120;
+  return { levels: { count: levels, total: 24 }, exits: { count: exits, total: 34 }, medallions: { count: medallions, total: 120 }, percent: complete ? 100 : Math.min(99.99, Math.floor((levels + exits + medallions) / 178 * 10000) / 100), complete };
 }
 export function refreshCosmetic(campaign: Campaign, catalog: CampaignCatalog): void {
   const secret = catalog.worlds.filter(w => w.secret);
